@@ -409,7 +409,7 @@ $handler->delete($result['id']);
          <section>
           <h2>Discovery</h2>
            <small><code data-trim>
-             https://example.com/api
+             GET: https://example.com/api
            </code></small>
           <pre><code data-trim>
 
@@ -418,7 +418,10 @@ $handler->delete($result['id']);
     {
       label: "Articles",
       description: "Export the article content type with "cookie" authentication.",
-      // ...
+      name: "articles__2_0",
+      resource: "articles",
+      major_version: 2,
+      minor_version: 0,
       self: "https://example.com/api/v2.0/articles"
     },
     {
@@ -447,6 +450,38 @@ $handler->delete($result['id']);
     }
   }
 }
+          </code></pre>
+        </section>
+
+
+      <section>
+          <h2>Discovery</h2>
+           <small><code data-trim>
+             OPTIONS: https://example.com/api/articles
+           </code></small>
+          <pre><code data-trim>
+{
+  label: {
+    info: {
+      label: "Label",
+      description: "The label of the resource."
+    },
+    data: {
+      type: "string",
+      read_only: false,
+      cardinality: 1,
+      required: false
+    },
+    form_element: {
+      type: "texfield",
+      default_value: "",
+      placeholder: "",
+      size: 255,
+      allowed_values: null
+    }
+  }
+}
+
           </code></pre>
         </section>
 
