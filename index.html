@@ -44,9 +44,9 @@
 			<div class="slides">
 
       <section id="transitions">
-        <h2>Transition Styles</h2>
+        <h2>Styles</h2>
         <p>
-          You can select from different transitions, like: <br>
+          Select transitions<br>
           <a href="?transition=none#/transitions">None</a> -
           <a href="?#/transitions">Default</a>
         </p>
@@ -111,7 +111,7 @@ function restful_get_access($object, $type) {
  * Check if user has access.
  */
 function restful_get_access($object, $type) {
-  return entity_access($type, $object));
+  return entity_access($type, $object);
 }
 					</code></pre>
 				</section>
@@ -172,7 +172,7 @@ function restful_get_access($entity_type, $entity, $account = NULL) {
  *   TRUE if the user has access to the entity, otherwise FALSE.
  */
 function restful_get_access($entity_type, $entity, $account = NULL) {
-  return entity_access($entity_type, $entity, $account));
+  return entity_access($entity_type, $entity, $account);
 }
 					</code></pre>
 				</section>
@@ -610,7 +610,7 @@ Given I login with an "authenticated" user
         </section>
 
         <section>
-          <h2>Behat, machine readable</h2>
+          <h2>Machine</h2>
 
           <pre><code data-trim>
 Scenario: Validate a user has access to an article.
@@ -621,7 +621,7 @@ Given I login with an "authenticated" user
         </section>
 
         <section>
-          <h2>Behat, human readable</h2>
+          <h2>Human</h2>
 
           <pre><code data-trim>
 Scenario: Validate a user has access to an article.
