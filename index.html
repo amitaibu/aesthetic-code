@@ -275,12 +275,12 @@ function restful_get_access($entity_type, $entity, $account = NULL) {
     {
       id: "1",
       label: "A new article",
-      self: "http://localhost/d7_dev/api/v2.0/articles/1"
+      self: "https://example.com/api/v2.0/articles/1"
     }
   ],
   self: {
     title: "Self",
-    href: "http://localhost/d7_dev/api/v2.0/articles/1"
+    href: "https://example.com/api/v2.0/articles/1"
   }
 }
           </code></pre>
@@ -299,25 +299,25 @@ function restful_get_access($entity_type, $entity, $account = NULL) {
     {
       id: "1",
       label: "A new article",
-      self: "http://localhost/d7_dev/api/v1.5/articles/1",
+      self: "https://example.com/api/v1.5/articles/1",
       text: "<p>This is the body</p> ",
       user: {
         id: "1",
         label: "admin",
-        self: "http://localhost/d7_dev/api/v1.0/users/1",
+        self: "https://example.com/api/v1.0/users/1",
         mail: "admin@example.com"
       }
     }
   ],
   self: {
     title: "Self",
-    href: "http://localhost/d7_dev/api/v1.5/articles/1"
+    href: "https://example.com/api/v1.5/articles/1"
   }
 }
           </code></pre>
         </section>
 
- <section>
+        <section>
           <h2>RESTful</h2>
           <small><code data-trim>
             https://example.com/api/v1.5/articles/1
@@ -341,6 +341,186 @@ class RestfulExampleArticlesResource__1_5 extends RestfulEntityBaseNode {
   }
 }
           </code></pre>
+        </section>
+
+
+        <section>
+          <h2>GET</h2>
+          <pre><code data-trim>
+// Get the RESTful handler.
+$handler = restful_get_restful_handler('articles', 1, 5);
+
+// Get a list of articles.
+$result = $handler->get(); // https://example.com/api/v1.5/articles
+
+// Sort list DESC.
+$request = array(
+  'sort' => array(
+    'id' => 'DESC',
+  ),
+);
+$result = $handler->get('', $request); // https://example.com/api/v1.5/articles/1?sort=-id
+
+// Get article with ID 1.
+$result = $handler->get(1); // https://example.com/api/v1.5/articles/1
+          </code></pre>
+        </section>
+
+
+        <section>
+          <h2>POST, PATCH, PUT, DELETE</h2>
+          <pre><code data-trim>
+
+// Get the RESTful handler.
+$handler = restful_get_restful_handler('articles', 1, 5);
+
+// Create a new "article" resource.
+$request = array('label' => 'My new article');
+$result = $handler->post('', $request);
+
+// Update just the label.
+$request = array('label' => 'Edited label');
+$handler->patch($result['id'], $request);
+
+// Delete.
+$handler->delete($result['id']);
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Features</h2>
+          <ul>
+            <li>Authentication</li>
+            <li>Rate Limit</li>
+            <li>Render Cache</li>
+            <li>Data Providers (Entity, DB, CTools plugins)</li>
+          </ul>
+        </section>
+
+         <section>
+          <h2>Discovery</h2>
+           <small><code data-trim>
+             https://example.com/api
+           </code></small>
+          <pre><code data-trim>
+
+{
+  data: [
+    {
+      label: "Articles",
+      description: "Export the article content type with "cookie" authentication.",
+      // ...
+      self: "https://example.com/api/v2.0/articles"
+    },
+    {
+      label: "Login",
+      description: "Login a user and return a JSON along with the authentication cookie..",
+      // ...
+      self: "https://example.com/api/login"
+    },
+    {
+      label: "File upload",
+      description: "A file upload wrapped with RESTful.",
+      // ...
+      self: "https://example.com/api/file-upload"
+    },
+    {
+      label: "CSRF token",
+      description: "Export the CSRF token unique for each user.",
+      // ...
+      self: "https://example.com/api/session/token"
+    },
+  ],
+  count: 10,
+  self: {
+    title: "Self",
+    href: "https://example.com/api"
+    }
+  }
+}
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Features</h2>
+          <ul>
+            <li>Authentication</li>
+            <li>Rate Limit</li>
+            <li>Render Cache</li>
+            <li>Data Providers (Entity, DB, CTools plugins)</li>
+            <li>Formatters</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Simple JSON</h2>
+          <small><code data-trim>
+            https://example.com/api/articles/1
+          </code></small>
+
+          <pre><code data-trim>
+{
+  data: [
+    {
+      id: "1",
+      label: "A new article",
+      self: "https://example.com/api/v2.0/articles/1"
+    }
+  ],
+  self: {
+    title: "Self",
+    href: "https://example.com/api/v2.0/articles/1"
+  }
+}
+          </code></pre>
+        </section>
+
+
+         <section>
+          <h2>HAL+JSON</h2>
+          <small><code data-trim>
+            https://example.com/api/articles/1
+          </code></small>
+
+          <pre><code data-trim>
+{
+  hal:articles: [
+    {
+      id: "1",
+      label: "A new article",
+      _links: {
+        self: {
+          href: "https://example.com/api/v2.0/articles/1"
+        }
+      }
+    }
+  ],
+  _links: {
+    self: {
+      title: "Self",
+      href: "https://example.com/api/v2.0/articles/1"
+    },
+    curies: {
+      name: "hal",
+      href: "https://example.com/docs/rels/{rel}",
+      templated: true
+    }
+  }
+}
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Tests</h2>
+          <img src="images/tests.jpg">
+        </section>
+
+        <section>
+          <h2>Tests</h2>
+          <small><code data-trim>
+            https://github.com/Gizra/restful
+          </code></small>
+          <img src="images/travis.jpg">
         </section>
 
 
