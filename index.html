@@ -178,7 +178,7 @@ function restful_get_access($entity_type, $entity, $account = NULL) {
 				</section>
 
 				<section>
-					<h1>Aesthetic Code</h1>
+					<h1>Aesthetic Code & RESTful</h1>
 					<h3>Gizra</h3>
 					<p>
 						<small>Amitai Burstein (<a href="http://twitter.com/amitaibu">@amitaibu</a>)</small>
@@ -186,21 +186,17 @@ function restful_get_access($entity_type, $entity, $account = NULL) {
 				</section>
 
         <section>
-          <h2>Headless Drupal</h2>
-        </section>
-
-        <section>
-          <h2>Ashkara?</h2>
-        </section>
-
-        <section>
-          <h1>Ashkara?</h1>
+          <h2>It must be 2011 because</h2>
           <ul>
-            <li>Views</li>
-            <li>Plain CSS</li>
-            <li>Panels</li>
+            <li>You write Plain CSS</li>
+            <li>Your first solution to the problem is Views</li>
+            <li>You think you can do it all with just plain Drupal</li>
           </ul>
         </section>
+
+      <section>
+        <h1>Headless Drupal</h1>
+      </section>
 
         <section>
           <h2>RestWs</h2>
@@ -268,11 +264,17 @@ function restful_get_access($entity_type, $entity, $account = NULL) {
         </div>
       </section>
 
-        <section>
-          <div>
-            <img src="images/email2.jpg">
-          </div>
-        </section>
+      <section>
+        <div>
+          <img src="images/email2.jpg">
+        </div>
+      </section>
+
+      <section>
+        <h1>RESTful</h1>
+        This module achieves a practical RESTful for Drupal following best practices.
+      </section>
+
 
       <section>
           <h2>RESTful</h2>
@@ -347,6 +349,20 @@ class RestfulExampleArticlesResource__1_5 extends RestfulEntityBaseNode {
       'property' => 'field_text_area',
       'sub_property' => 'value',
     );
+
+    $public_fields['user'] = array(
+      'property' => 'author',
+      'resource' => array(
+        // The bundle of the entity.
+        'user' => array(
+          // The name of the resource to map to.
+          'name' => 'users',
+          // Determines if the entire resource should appear, or only the ID.
+          'full_view' => TRUE,
+        ),
+      ),
+    );
+
 
     return $public_fields;
   }
