@@ -511,18 +511,106 @@ $handler->delete($result['id']);
         </section>
 
         <section>
-          <h2>Tests</h2>
+          <h2>Features</h2>
+          <ul>
+            <li>Authentication</li>
+            <li>Rate Limit</li>
+            <li>Render Cache</li>
+            <li>Data Providers (Entity, DB, CTools plugins)</li>
+            <li>Formatters</li>
+            <li>Tests</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Lots of tests ...</h2>
           <img src="images/tests.jpg">
         </section>
 
         <section>
-          <h2>Tests</h2>
+          <h2>... executed every commit</h2>
           <small><code data-trim>
             https://github.com/Gizra/restful
           </code></small>
           <img src="images/travis.jpg">
         </section>
 
+
+        <section>
+          <h1>יאללה, בוא נדבר על טסטים</h1>
+        </section>
+
+        <section>
+          <h2>Behat</h2>
+
+          <pre><code data-trim>
+Scenario: Validate a user can login to the site and see the homepage.
+Given I visit "/user/login"
+ # Fill the username and password input fields, and click submit
+ When I fill "username" with "foo"
+  And I fill "password" with "bar"
+  And I press "Login"
+ Then I should get a "200" HTTP response
+          </pre></code>
+        </section>
+
+        <section>
+          <h2>Behat, Human readable</h2>
+
+          <pre><code data-trim>
+Scenario: Validate a user can login to the site and see the homepage.
+Given I login with an "authenticated" user
+ When I go to the homepage
+ Then I should have access
+          </pre></code>
+        </section>
+
+        <section>
+          <h2>Behat, machine readable</h2>
+
+          <pre><code data-trim>
+Scenario: Validate a user has access to an article.
+Given I login with an "authenticated" user
+ When I go to "node/1"
+ Then I should have access
+          </pre></code>
+        </section>
+
+        <section>
+          <h2>Behat, human readable</h2>
+
+          <pre><code data-trim>
+Scenario: Validate a user has access to an article.
+Given I login with an "authenticated" user
+ When I go to the content "My first article"
+ Then I should have access
+          </pre></code>
+        </section>
+
+        <section>
+          <pre><code data-trim>
+/**
+ * @When /^I go to the content "([^"]*)"$/
+ */
+public function iGoToTheContent($title) {
+  $query = new entityFieldQuery();
+  $result = $query
+    ->entityCondition('entity_type', 'node')
+    ->propertyCondition('title', $title)
+    ->propertyCondition('status', NODE_PUBLISHED)
+    ->range(0, 1)
+    ->execute();
+
+  if (empty($result['node'])) {
+    $params = array('@title' => $title);
+    throw new Exception(format_string("Node @title not found.", $params));
+  }
+
+  $nid = key($result['node']);
+  return new Given('I go to "node/' . $nid. '"');
+}
+          </pre></code>
+        </section>
 
         <!-- ********   -->
 
