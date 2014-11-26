@@ -263,6 +263,89 @@ function restful_get_access($entity_type, $entity, $account = NULL) {
           </div>
         </section>
 
+      <section>
+          <h2>RESTful</h2>
+          <small><code data-trim>
+            https://example.com/api/articles/1
+          </code></small>
+
+          <pre><code data-trim>
+{
+  data: [
+    {
+      id: "1",
+      label: "A new article",
+      self: "http://localhost/d7_dev/api/v2.0/articles/1"
+    }
+  ],
+  self: {
+    title: "Self",
+    href: "http://localhost/d7_dev/api/v2.0/articles/1"
+  }
+}
+          </code></pre>
+        </section>
+
+
+        <section>
+          <h2>RESTful</h2>
+          <small><code data-trim>
+            https://example.com/api/v1.5/articles/1
+          </code></small>
+
+          <pre><code data-trim>
+{
+  data: [
+    {
+      id: "1",
+      label: "A new article",
+      self: "http://localhost/d7_dev/api/v1.5/articles/1",
+      text: "<p>This is the body</p> ",
+      user: {
+        id: "1",
+        label: "admin",
+        self: "http://localhost/d7_dev/api/v1.0/users/1",
+        mail: "admin@example.com"
+      }
+    }
+  ],
+  self: {
+    title: "Self",
+    href: "http://localhost/d7_dev/api/v1.5/articles/1"
+  }
+}
+          </code></pre>
+        </section>
+
+ <section>
+          <h2>RESTful</h2>
+          <small><code data-trim>
+            https://example.com/api/v1.5/articles/1
+          </code></small>
+
+          <pre><code data-trim>
+class RestfulExampleArticlesResource__1_5 extends RestfulEntityBaseNode {
+
+  /**
+   * Overrides RestfulEntityBaseNode::publicFieldsInfo().
+   */
+  public function publicFieldsInfo() {
+    $public_fields = parent::publicFieldsInfo();
+
+    $public_fields['text'] = array(
+      'property' => 'field_text_area',
+      'sub_property' => 'value',
+    );
+
+    return $public_fields;
+  }
+}
+          </code></pre>
+        </section>
+
+
+        <!-- ********   -->
+
 				<section data-markdown>
 					<script type="text/template">
 						## Markdown support
