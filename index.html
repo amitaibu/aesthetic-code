@@ -189,6 +189,9 @@ function restful_get_access($entity_type, $entity, $account = NULL) {
 					<p>
 						<small>Amitai Burstein (<a href="http://twitter.com/amitaibu">@amitaibu</a>)</small>
 					</p>
+          <aside class="notes">
+            Intro about Gizra
+          </aside>
 				</section>
 
         <section>
@@ -202,6 +205,9 @@ function restful_get_access($entity_type, $entity, $account = NULL) {
 
       <section>
         <h1>2014: Headless Drupal</h1>
+        <aside class="notes">
+          No longer monolithic Drupal. Front end advanced quickly.
+        </aside>
       </section>
 
         <section>
@@ -268,6 +274,9 @@ function restful_get_access($entity_type, $entity, $account = NULL) {
         <div>
           <img src="images/email1.jpg">
         </div>
+        <aside class="notes">
+גישה חדשה, שתציב את גיזרה בראש ההאדלס. יש עלויות והשקעה. תגובותו המרגשת של בריס
+        </aside>
       </section>
 
       <section>
@@ -303,6 +312,10 @@ function restful_get_access($entity_type, $entity, $account = NULL) {
   }
 }
           </code></pre>
+
+        <aside class="notes">
+          Expose bundles, Versionable API, Clean output
+        </aside>
         </section>
 
 
@@ -511,6 +524,9 @@ $handler->delete($result['id']);
 
         <section>
           <video autoplay loop class="stretch" src="images/quick-post.mp4"></video>
+          <aside class="notes">
+            Auto discovery apps that can crawl the backend. Quick post.
+          </aside>
         </section>
 
         <section>
@@ -610,6 +626,9 @@ $handler->delete($result['id']);
 
         <section>
           <h1>יאללה, בוא נדבר על טסטים</h1>
+          <aside class="notes">
+            Lets imagine you all write tests
+          </aside>
         </section>
 
         <section>
@@ -623,7 +642,7 @@ Given I visit "/user/login"
   And I fill "password" with "bar"
   And I press "Login"
  Then I should get a "200" HTTP response
-          </pre></code>
+          </code></pre>
         </section>
 
         <section>
@@ -634,7 +653,7 @@ Scenario: Validate a user can login to the site and see the homepage.
 Given I login with an "authenticated" user
  When I go to the homepage
  Then I should have access
-          </pre></code>
+          </code></pre>
         </section>
 
         <section>
@@ -645,7 +664,7 @@ Scenario: Validate a user has access to an article.
 Given I login with an "authenticated" user
  When I go to "node/1"
  Then I should have access
-          </pre></code>
+          </code></pre>
         </section>
 
         <section>
@@ -656,7 +675,7 @@ Scenario: Validate a user has access to an article.
 Given I login with an "authenticated" user
  When I go to the content "My first article"
  Then I should have access
-          </pre></code>
+          </code></pre>
         </section>
 
         <section>
@@ -681,12 +700,17 @@ public function iGoToTheContent($title) {
   $nid = key($result['node']);
   return new Given('I go to "node/' . $nid. '"');
 }
-          </pre></code>
+          </code></pre>
         </section>
 
         <section>
           <h1>Clear Communication</h1>
           <h2>LeHafrid Et Hamotz Me Hateven</h2>
+
+          <aside class="notes">
+            The same way you imagine the clean UI; Your code is the UI.
+            Define the user. Keep it clear for all the "user" stack.
+          </aside>
         </section>
 
 				<section>
